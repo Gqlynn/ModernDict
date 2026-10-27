@@ -1,0 +1,496 @@
+/* ==========================================================================
+   首页 · 精简版式（参考 DeepSeek 官网的留白与克制）
+   只作用于 .hp 作用域，不影响其他页面；主色仍是词典的红与金，但退为点缀。
+   ========================================================================== */
+
+/* 首页使用更干净的底色，暂时收起全站纸纹，靠近 DeepSeek 官网的留白感 */
+body:has(.hp) {
+  background-image: none;
+  background-color: #fbf9f4;
+}
+
+.hp {
+  max-width: 940px;
+  margin: 0 auto;
+  padding-bottom: 8px;
+}
+
+/* —— 加载骨架 —— */
+.hp-loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  max-width: 640px;
+  margin: 120px auto 0;
+}
+
+.hp-loading .sk-line--title {
+  width: min(420px, 70%);
+  height: 54px;
+}
+
+.hp-loading .sk-line--sub {
+  width: min(300px, 52%);
+}
+
+.hp-loading .sk-field {
+  width: min(560px, 86%);
+  height: 62px;
+  border-radius: 18px;
+}
+
+/* —— 首屏 —— */
+.hp-hero {
+  padding: clamp(56px, 8vw, 92px) 0 clamp(44px, 6vw, 68px);
+  text-align: center;
+}
+
+.hp-eyebrow {
+  color: var(--ink-faint);
+  font-family: var(--font-hei);
+  font-size: 12px;
+  letter-spacing: 0.22em;
+}
+
+.hp-title {
+  margin: 24px 0 0;
+  color: var(--ink);
+  font-family: var(--font-title);
+  font-size: clamp(56px, 8.2vw, 92px);
+  font-weight: 400;
+  letter-spacing: 0.05em;
+  line-height: 1.05;
+}
+
+.hp-welcome {
+  margin-top: 18px;
+  color: var(--red-deep);
+  font-family: var(--font-hei);
+  font-size: 14px;
+  letter-spacing: 0.12em;
+}
+
+.hp-lede {
+  max-width: 600px;
+  margin: 22px auto 0;
+  color: var(--ink-soft);
+  font-size: 16px;
+  letter-spacing: 0.05em;
+  line-height: 1.9;
+}
+
+.hp-search {
+  max-width: 640px;
+  margin: 42px auto 0;
+}
+
+.hp .search-box {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 7px 7px 7px 20px;
+  border: 1px solid #e8e1d2;
+  border-radius: 18px;
+  background: rgba(255, 253, 247, 0.92);
+  box-shadow: 0 14px 36px rgba(60, 40, 10, 0.07), 0 1px 0 #fff inset;
+  transition: border-color 0.2s var(--ease), box-shadow 0.2s var(--ease);
+}
+
+.hp .search-box:focus-within {
+  border-color: var(--gold);
+  box-shadow: 0 16px 44px rgba(60, 40, 10, 0.1), 0 0 0 3px rgba(201, 162, 39, 0.12);
+}
+
+.hp .search-box-input {
+  flex: 1;
+  min-width: 0;
+  height: 46px;
+  padding: 0 4px;
+  border: none;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+  font-family: var(--font-song);
+  font-size: 16px;
+  color: var(--ink);
+}
+
+.hp .search-box-input:focus {
+  outline: none;
+}
+
+.hp .search-box-input::placeholder {
+  color: var(--ink-faint);
+}
+
+.hp .search-box-btn {
+  flex: none;
+  height: 46px;
+  padding: 0 24px;
+  border-radius: 12px;
+  font-size: 14px;
+  letter-spacing: 0.16em;
+}
+
+.hp .search-suggest {
+  top: calc(100% + 10px);
+  border-color: var(--rule-soft);
+  border-radius: 14px;
+  box-shadow: 0 20px 44px rgba(60, 40, 10, 0.14);
+}
+
+.hp-search-hint {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 4px 8px;
+  margin-top: 18px;
+  color: var(--ink-faint);
+  font-family: var(--font-hei);
+  font-size: 12px;
+  letter-spacing: 0.04em;
+}
+
+.hp-search-hint strong {
+  color: var(--ink-soft);
+  font-weight: 600;
+}
+
+.hp-dot {
+  color: var(--rule);
+}
+
+/* —— 分区 —— */
+.hp-block {
+  padding: clamp(34px, 4.6vw, 48px) 0;
+  border-top: 1px solid rgba(216, 203, 178, 0.55);
+}
+
+.hp-block-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.hp-block-title {
+  margin: 0;
+  color: var(--ink-soft);
+  font-family: var(--font-hei);
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+}
+
+.hp-block-link,
+.hp-block-note {
+  color: var(--ink-faint);
+  font-family: var(--font-hei);
+  font-size: 12px;
+  letter-spacing: 0.04em;
+}
+
+.hp-block-link:hover {
+  color: var(--red-deep);
+}
+
+/* —— 检字表 —— */
+.hp-letters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2px 4px;
+}
+
+.hp-letter {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 38px;
+  height: 38px;
+  border-radius: 9px;
+  color: var(--ink-soft);
+  font-family: var(--font-hei);
+  font-size: 14px;
+  transition: background 0.15s var(--ease), color 0.15s var(--ease);
+}
+
+.hp-letter:hover {
+  background: var(--paper-deep);
+  color: var(--red-deep);
+}
+
+.hp-letter--western {
+  min-width: 0;
+  padding: 0 12px;
+  letter-spacing: 0.08em;
+}
+
+/* —— 随手翻翻 —— */
+.hp-entry-list {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  list-style: none;
+}
+
+.hp-entry {
+  border-bottom: 1px solid rgba(216, 203, 178, 0.5);
+}
+
+.hp-entry a {
+  display: grid;
+  grid-template-columns: 30px 200px minmax(0, 1fr);
+  align-items: baseline;
+  gap: 14px;
+  padding: 15px 2px;
+}
+
+.hp-entry-letter {
+  color: var(--ink-faint);
+  font-family: var(--font-hei);
+  font-size: 11px;
+}
+
+.hp-entry-head {
+  color: var(--ink);
+  font-size: 15.5px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.hp-entry-head::before {
+  content: "【";
+  color: var(--gold);
+  font-weight: 400;
+}
+
+.hp-entry-head::after {
+  content: "】";
+  color: var(--gold);
+  font-weight: 400;
+}
+
+.hp-entry-def {
+  overflow: hidden;
+  color: var(--ink-faint);
+  font-size: 13px;
+  line-height: 1.8;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.hp-entry a:hover .hp-entry-head {
+  color: var(--red-deep);
+}
+
+/* —— 附录七篇 —— */
+.hp-appendix-list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  column-gap: clamp(28px, 5vw, 64px);
+  list-style: none;
+}
+
+.hp-appendix {
+  border-bottom: 1px solid rgba(216, 203, 178, 0.5);
+}
+
+.hp-appendix a {
+  display: flex;
+  align-items: baseline;
+  gap: 16px;
+  padding: 14px 2px;
+}
+
+.hp-appendix-no {
+  flex: none;
+  min-width: 48px;
+  color: var(--gold);
+  font-family: var(--font-hei);
+  font-size: 11px;
+  letter-spacing: 0.06em;
+}
+
+.hp-appendix-title {
+  color: var(--ink);
+  font-size: 15px;
+  white-space: nowrap;
+}
+
+.hp-appendix-desc {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  color: var(--ink-faint);
+  font-size: 12.5px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.hp-appendix a:hover .hp-appendix-title {
+  color: var(--red-deep);
+}
+
+/* —— 封底引言 —— */
+.hp-quote {
+  padding: clamp(48px, 7vw, 76px) 0 clamp(28px, 4vw, 44px);
+  border-top: 1px solid rgba(216, 203, 178, 0.55);
+  text-align: center;
+}
+
+.hp-quote blockquote {
+  margin: 0;
+}
+
+.hp-quote p {
+  max-width: 720px;
+  margin: 0 auto;
+  color: var(--ink-soft);
+  font-size: clamp(15px, 1.5vw, 16.5px);
+  line-height: 2.15;
+  letter-spacing: 0.02em;
+}
+
+.hp-quote cite {
+  display: block;
+  margin-top: 20px;
+  color: var(--ink-faint);
+  font-family: var(--font-hei);
+  font-size: 12px;
+  font-style: normal;
+  letter-spacing: 0.12em;
+}
+
+.hp-quote-meta {
+  margin-top: 32px;
+  color: var(--ink-faint);
+  font-family: var(--font-hei);
+  font-size: 11px;
+  letter-spacing: 0.2em;
+}
+
+.hp-empty {
+  grid-column: 1 / -1;
+  padding: 8px 0;
+  list-style: none;
+}
+
+.hp-empty .inline-error {
+  margin: 0;
+}
+
+/* —— 窄屏 —— */
+@media (max-width: 720px) {
+  .hp-hero {
+    padding: 34px 0 30px;
+  }
+
+  .hp-eyebrow {
+    font-size: 10.5px;
+    letter-spacing: 0.16em;
+  }
+
+  .hp-title {
+    margin-top: 18px;
+    font-size: clamp(44px, 13vw, 60px);
+  }
+
+  .hp-lede {
+    margin-top: 16px;
+    padding: 0 10px;
+    font-size: 14px;
+    line-height: 1.85;
+  }
+
+  .hp-search {
+    margin-top: 28px;
+  }
+
+  .hp .search-box {
+    padding: 6px 6px 6px 14px;
+    border-radius: 16px;
+  }
+
+  .hp .search-box-input {
+    height: 42px;
+    font-size: 15px;
+  }
+
+  .hp .search-box-btn {
+    height: 42px;
+    padding: 0 18px;
+    border-radius: 11px;
+    letter-spacing: 0.1em;
+  }
+
+  .hp-search-hint {
+    margin-top: 14px;
+    font-size: 11.5px;
+  }
+
+  .hp-quick {
+    display: none;
+  }
+
+  .hp-block {
+    padding: 26px 0;
+  }
+
+  .hp-block-head {
+    margin-bottom: 14px;
+  }
+
+  .hp-block-note {
+    display: none;
+  }
+
+  .hp-block-title {
+    font-size: 13px;
+  }
+
+  .hp-letter {
+    min-width: 34px;
+    height: 34px;
+    font-size: 13px;
+  }
+
+  .hp-entry-list,
+  .hp-appendix-list {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .hp-entry a {
+    grid-template-columns: 24px minmax(0, 1fr);
+    row-gap: 2px;
+    padding: 12px 2px;
+  }
+
+  .hp-entry-def {
+    grid-column: 2;
+    font-size: 13px;
+  }
+
+  .hp-appendix a {
+    gap: 12px;
+    padding: 12px 2px;
+  }
+
+  .hp-appendix-desc {
+    display: none;
+  }
+
+  .hp-appendix-no {
+    min-width: 44px;
+  }
+
+  .hp-quote {
+    padding-top: 40px;
+  }
+
+  .hp-quote p {
+    padding: 0 4px;
+    font-size: 14.5px;
+  }
+}

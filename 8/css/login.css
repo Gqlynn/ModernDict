@@ -1,0 +1,285 @@
+/* ==========================================================================
+   验证界面（进入网站前的身份验证）
+   整页红金织纹底：左侧书名横匾，右侧竖版验证卡。
+   布局参考手绘：整页底纹 + 左横向标题块 + 右竖向表单块。
+   ========================================================================== */
+
+/* 验证期间隐藏主站外壳 */
+body.gate-open {
+  background-color: #6b0f0f;
+  background-image:
+    radial-gradient(circle at 50% 42%, rgba(255, 255, 255, 0.06), transparent 62%),
+    repeating-linear-gradient(45deg, rgba(0, 0, 0, 0.14) 0 1px, transparent 1px 15px),
+    repeating-linear-gradient(-45deg, rgba(0, 0, 0, 0.14) 0 1px, transparent 1px 15px),
+    radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.035) 0 1px, transparent 1.6px);
+  background-size: auto, auto, auto, 18px 18px;
+  background-attachment: fixed;
+  overflow-x: hidden;
+}
+
+body.gate-open .site-header,
+body.gate-open .toolbar,
+body.gate-open .site-footer,
+body.gate-open .skip-link,
+body.gate-open .error-zone,
+body.gate-open #toast-zone,
+body.gate-open #backtop-root {
+  display: none !important;
+}
+
+body.gate-open .page {
+  max-width: none;
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+  background: transparent;
+}
+
+body.gate-open .route-view {
+  animation: none;
+}
+
+/* —— 整页容器 —— */
+.gate {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 48px clamp(24px, 2.6vw, 44px) 48px clamp(28px, 5vw, 96px);
+}
+
+.gate-inner {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(320px, 392px);
+  align-items: center;
+  gap: clamp(48px, 8vw, 140px);
+  width: min(1240px, 100%);
+}
+
+/* —— 左：书名区（只有上下长横线，无竖线边框） —— */
+.gate-brand {
+  position: relative;
+  padding: clamp(34px, 4vw, 54px) 0;
+  color: #fff9ec;
+  text-align: center;
+}
+
+.gate-brand::before,
+.gate-brand::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: rgba(201, 162, 39, 0.75);
+}
+
+.gate-brand::before {
+  top: 0;
+}
+
+.gate-brand::after {
+  bottom: 0;
+}
+
+.gate-brand-title {
+  margin: 0;
+  font-family: var(--font-title);
+  font-size: clamp(52px, 6vw, 96px);
+  font-weight: 400;
+  line-height: 1.12;
+  letter-spacing: 0.07em;
+  white-space: nowrap;
+  text-shadow: 0 2px 14px rgba(0, 0, 0, 0.26);
+}
+
+.gate-brand-sub {
+  margin-top: 26px;
+  color: rgba(255, 249, 236, 0.82);
+  font-family: var(--font-song);
+  font-size: 13px;
+  line-height: 1.9;
+  letter-spacing: 0.12em;
+}
+
+/* —— 右：竖版验证卡 —— */
+.gate-card {
+  padding: clamp(32px, 3.2vw, 44px) clamp(24px, 2.8vw, 36px);
+  border: 1px solid rgba(201, 162, 39, 0.4);
+  border-radius: 10px;
+  background: #fffdf7;
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.32);
+}
+
+.gate-form {
+  width: 100%;
+}
+
+.gate-title {
+  margin: 0;
+  color: var(--ink);
+  font-family: var(--font-song);
+  font-size: 30px;
+  font-weight: 600;
+  line-height: 1.3;
+  letter-spacing: 0.08em;
+}
+
+.gate-field {
+  display: block;
+  margin-top: 24px;
+}
+
+.gate-label {
+  display: block;
+  margin-bottom: 8px;
+  color: var(--ink-soft);
+  font-family: var(--font-hei);
+  font-size: 12px;
+  letter-spacing: 0.08em;
+}
+
+.gate-input {
+  width: 100%;
+  height: 46px;
+  padding: 0 14px;
+  border: 1px solid var(--rule);
+  border-radius: 8px;
+  background: #fffdf7;
+  color: var(--ink);
+  font-family: var(--font-song);
+  font-size: 16px;
+  transition: border-color 0.16s var(--ease), box-shadow 0.16s var(--ease);
+}
+
+.gate-input:focus {
+  outline: none;
+  border-color: var(--gold);
+  box-shadow: 0 0 0 3px rgba(201, 162, 39, 0.14);
+}
+
+.gate-error {
+  margin-top: 16px;
+  color: var(--red-deep);
+  font-family: var(--font-hei);
+  font-size: 12.5px;
+  line-height: 1.7;
+}
+
+.gate-submit {
+  width: 100%;
+  height: 48px;
+  margin-top: 26px;
+  border: none;
+  border-radius: 8px;
+  background: var(--red-deep);
+  color: #fff9ec;
+  font-family: var(--font-hei);
+  font-size: 15px;
+  letter-spacing: 0.24em;
+  cursor: pointer;
+  transition: background 0.16s var(--ease);
+}
+
+.gate-submit:hover {
+  background: var(--red);
+}
+
+.gate-submit:disabled {
+  background: var(--ink-faint);
+  cursor: default;
+}
+
+/* —— 主站顶栏的同学信息与退出入口 —— */
+.auth-actions {
+  display: flex;
+  align-items: center;
+  flex: none;
+  gap: 4px;
+  padding-left: 14px;
+  border-left: 1px solid var(--rule-soft);
+}
+
+.auth-user {
+  color: var(--ink-faint);
+  font-family: var(--font-hei);
+  font-size: 12.5px;
+  white-space: nowrap;
+}
+
+.auth-user strong {
+  color: var(--red-deep);
+  font-weight: 600;
+}
+
+.auth-logout {
+  padding: 6px 8px;
+  border: none;
+  background: none;
+  color: var(--ink-faint);
+  font-family: var(--font-hei);
+  font-size: 12px;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: color 0.16s var(--ease);
+}
+
+.auth-logout:hover {
+  color: var(--red-deep);
+}
+
+/* —— 手机/窄屏 —— */
+@media (max-width: 860px) {
+  .gate {
+    align-items: flex-start;
+    padding: 28px 18px 44px;
+  }
+
+  .gate-inner {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 24px;
+    width: 100%;
+  }
+
+  .gate-brand {
+    padding: 24px 0;
+  }
+
+  .gate-brand-title {
+    font-size: clamp(36px, 11vw, 50px);
+  }
+
+  .gate-brand-sub {
+    margin-top: 14px;
+    font-size: 10.5px;
+    letter-spacing: 0.06em;
+  }
+
+  .gate-card {
+    width: min(400px, 100%);
+    margin: 0 auto;
+    padding: 26px 20px 28px;
+  }
+
+  .gate-title {
+    font-size: 26px;
+  }
+
+  .gate-field {
+    margin-top: 20px;
+  }
+
+  .auth-actions {
+    padding-left: 8px;
+    gap: 0;
+  }
+
+  .auth-user {
+    display: none;
+  }
+
+  .auth-logout {
+    font-size: 11.5px;
+    padding: 4px;
+  }
+}
